@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabla"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow>
+
+        <TextView
+            android:id="@+id/columNombre"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="NOMBRE"
+            android:textColor="#969696"
+            android:textSize="20sp"
+            android:layout_gravity="start" />
+
+        <TextView
+            android:id="@+id/columPrecio"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="PRECIO"
+            android:textColor="#969696"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal" />
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/nombreProd"
+            android:layout_width="0dip"
+            android:layout_height="50dip"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="Nom Prod"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_gravity="start" />
+
+        <TextView
+            android:id="@+id/precioProd"
+            android:layout_width="0dip"
+            android:layout_height="50dip"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="Pre Prod"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal" />
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/columImagen"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="IMAGEN"
+            android:textColor="#969696"
+            android:textSize="20sp"
+            android:layout_gravity="start" />
+    </TableRow>
+
+    <TableRow>
+        <ImageView
+            android:id="@+id/imagenProd"
+            android:layout_width="match_parent"
+            android:layout_height="150dip"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="4dip"
+            android:contentDescription="@string/description"
+            android:padding="5dp"
+            android:src="@mipmap/ic_launcher"
+            android:visibility="visible" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/columDesc"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="DESCRIPCIÓN"
+            android:textColor="#969696"
+            android:textSize="20sp"
+            android:layout_gravity="start" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/descriProd"
+            android:layout_width="0dip"
+            android:layout_height="150dip"
+            android:layout_margin="4dip"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:text="Descripción del producto"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:layout_gravity="start" />
+    </TableRow>
+
+</TableLayout>

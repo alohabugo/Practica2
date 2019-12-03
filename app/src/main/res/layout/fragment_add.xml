@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gridAdd"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:useDefaultMargins="true"
+    android:layout_marginTop="60dp"
+    android:columnCount="2"
+    android:rowCount="8" >
+
+    <TextView
+        android:id="@+id/lbNombre"
+        android:padding="5dp"
+        android:text="Nombre:"
+        android:textColor="#969696"
+        android:textSize="18sp"
+        android:layout_columnSpan="2"
+        android:layout_gravity="left" />
+
+    <EditText
+        android:id="@+id/nameProd"
+        android:ems="20"
+        android:padding="5dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_columnSpan="2"
+        android:layout_gravity="left" />
+
+    <TextView
+        android:id="@+id/lbDesc"
+        android:padding="5dp"
+        android:text="Descripción:"
+        android:textColor="#969696"
+        android:textSize="18sp"
+        android:layout_columnSpan="2"
+        android:layout_gravity="left" />
+
+    <EditText
+        android:id="@+id/descProd"
+        android:ems="20"
+        android:padding="5dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_columnSpan="2"
+        android:layout_gravity="left" />
+
+    <ImageView
+        android:id="@+id/imageProd"
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/description"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_gravity="center"
+        android:layout_rowSpan="3"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/btnFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="HACER FOTO"
+        android:layout_column="1"
+        android:layout_gravity="left" />
+
+    <TextView
+        android:id="@+id/lbPrecio"
+        android:padding="5dp"
+        android:text="Precio:"
+        android:textColor="#969696"
+        android:textSize="18sp"
+        android:layout_column="1"
+        android:layout_gravity="left" />
+
+    <EditText
+        android:id="@+id/precProd"
+        android:ems="8"
+        android:padding="5dp"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_column="1"
+        android:layout_gravity="left" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="AÑADIR PRODUCTO"
+        android:layout_columnSpan="2"
+        android:layout_gravity="center" />
+
+
+
+
+
+</GridLayout>
