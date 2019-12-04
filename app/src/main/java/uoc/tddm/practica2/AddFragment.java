@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,6 +15,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 
 /**
@@ -41,8 +47,14 @@ public class AddFragment extends Fragment {
     EditText metDescrip;
     EditText metPrecio;
     ImageView mimageFoto;
+    EditText metCoordenadas;
     Button mbtnFoto;
     Button mbtnAdd;
+
+    //cliente de servicios de ubicacion
+    private FusedLocationProviderClient mFusedLocationClient;
+    private LocationRequest mLocationRequest;
+    private LocationCallback mLocationCallback;
 
 
     private OnFragmentInteractionListener mListener;
@@ -89,6 +101,22 @@ public class AddFragment extends Fragment {
         metDescrip = mView.findViewById(R.id.descProd);
         metPrecio = mView.findViewById(R.id.precProd);
         mimageFoto = mView.findViewById(R.id.imageProd);
+        metCoordenadas = mView.findViewById(R.id.coordProd);
+
+        //obtenemos localización
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext() );
+
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(120000);
+        mLocationRequest.setFastestInterval(120000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        mLocationRequest.setNumUpdates(1);
+
+        //gestionamos permisos
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest,mLocationCallback, Looper.myLooper());
+
+        /******* FALTA CODIGO GESTIONAR PERMISOS */
+
 
         //* codigo hacer foto
         mbtnFoto = mView.findViewById(R.id.btnFoto);
@@ -110,9 +138,12 @@ public class AddFragment extends Fragment {
                 String precio = metPrecio.getText().toString();
                 String descrip = metDescrip.getText().toString();
                 Bitmap image = ((BitmapDrawable)mimageFoto.getDrawable()).getBitmap();
+                //obtenemos las coordenadas
+                //pasamos latitud y longitud al Producto a añadir
+
 
                 //creamos el producto y se lo pasamos al metodo onButtonPressed
-                onButtonPressed(new Producto(nombre,precio,descrip,image));
+                onButtonPressed(new Producto(nombre,precio,descrip,image,0.0, 0.0));
             }
         });
 

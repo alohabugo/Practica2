@@ -149,7 +149,7 @@ public class MainActivity extends FragmentActivity
         String json = null;
 
         try {
-            InputStream is = getAssets().open("listaproductos.json");
+            InputStream is = getAssets().open("listaproductos2.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);
@@ -165,8 +165,10 @@ public class MainActivity extends FragmentActivity
                 String jdescripcion=jProducto.getString("descripcion");
                 String jimagen=jProducto.getString("imagen");
                 Bitmap imagen= BitmapFactory.decodeStream(getAssets().open("images/"+jimagen));
+                Double jlat=jProducto.getDouble("latitud");
+                Double jlon=jProducto.getDouble("longitud");
 
-                JsonProductos.add(new Producto(jnombre, jprecio, jdescripcion, imagen));
+                JsonProductos.add(new Producto(jnombre, jprecio, jdescripcion, imagen, jlat, jlon));
             }
         } catch (IOException ex) {
             ex.printStackTrace();
