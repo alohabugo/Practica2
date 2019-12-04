@@ -3,6 +3,7 @@ package uoc.tddm.practica2;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 
@@ -35,9 +37,13 @@ public class AddFragment extends Fragment {
     private String mParam2;
 
     View mView;
+    EditText metNombre;
+    EditText metDescrip;
+    EditText metPrecio;
+    ImageView mimageFoto;
     Button mbtnFoto;
     Button mbtnAdd;
-    ImageView mimageFoto;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -78,7 +84,10 @@ public class AddFragment extends Fragment {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_add, container, false);
 
-        //obtener referencia imageView
+        //obtenenos referencias
+        metNombre = mView.findViewById(R.id.nameProd);
+        metDescrip = mView.findViewById(R.id.descProd);
+        metPrecio = mView.findViewById(R.id.precProd);
         mimageFoto = mView.findViewById(R.id.imageProd);
 
         //* codigo hacer foto
@@ -96,7 +105,14 @@ public class AddFragment extends Fragment {
         mbtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //obtenemos los valores introducidos por el usuario
+                String nombre = metNombre.getText().toString();
+                String precio = metPrecio.getText().toString();
+                String descrip = metDescrip.getText().toString();
+                Bitmap image = ((BitmapDrawable)mimageFoto.getDrawable()).getBitmap();
 
+                //creamos el producto y se lo pasamos al metodo onButtonPressed
+                onButtonPressed(new Producto(nombre,precio,descrip,image));
             }
         });
 
@@ -123,9 +139,9 @@ public class AddFragment extends Fragment {
 
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(Producto item) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onFragmentInteraction(item);
         }
     }
 
@@ -158,10 +174,6 @@ public class AddFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public interface OnListFragmentInteractionListener {
-
+        void onFragmentInteraction(Producto item);
     }
 }

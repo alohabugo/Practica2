@@ -38,6 +38,7 @@ public class MainActivity extends FragmentActivity
 
     private ArrayList<Producto> listaProductos;
     public static final List<Producto> ITEMS = new ArrayList<Producto>();
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class MainActivity extends FragmentActivity
         setContentView(R.layout.activity_main);
 
         //set title: Productos disponibles
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("APP Compra/Venta de Productos");
 
 
@@ -114,10 +115,12 @@ public class MainActivity extends FragmentActivity
         if (id == R.id.nav_nuevo_producto) {
             //instanciamos el fragment para añadir producto
             fragment = new AddFragment();
+            toolbar.setTitle("Añadir producto");
 
         } else if (id == R.id.nav_productos) {
             //instanciamos el fragment para el listado de productos
             fragment = new ArticleFragment();
+            toolbar.setTitle("Lista productos");
 
         } else if (id == R.id.nav_maps) {
 
@@ -126,6 +129,7 @@ public class MainActivity extends FragmentActivity
 
 
         }
+
 
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -137,6 +141,7 @@ public class MainActivity extends FragmentActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     private ArrayList<Producto> inicializarProductos() {
         //accedemos al fichero json para obtener la lista de productos
@@ -185,7 +190,14 @@ public class MainActivity extends FragmentActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void onFragmentInteraction(Producto item) {
+        //añadimos el producto nuevo
+        ITEMS.add(item);
+        Toast.makeText(this,"Producto añadido: "+item.getNombre(),Toast.LENGTH_SHORT).show();
+        //mostramos el listado de productos
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, new ArticleFragment());
+        ft.commit();
+        toolbar.setTitle("Lista productos");
     }
 }

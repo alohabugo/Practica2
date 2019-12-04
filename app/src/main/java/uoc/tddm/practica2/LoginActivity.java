@@ -31,6 +31,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -338,9 +339,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
 
-                //Implementacion Shared Preferences
-                final SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                //IMPLEMENTACION SHARED PREFERENCES
+                //creamos el objeto SharedPreferences
+                SharedPreferences sharedPref = getSharedPreferences("credenciales", MODE_PRIVATE);
+                //creamos el objeto Editor para editar el archivo
                 SharedPreferences.Editor editor = sharedPref.edit();
+                //añadimos las credenciales
                 editor.putBoolean("registered", true);
                 editor.putString("username", this.mEmail);
                 editor.putString("password", this.mPassword);

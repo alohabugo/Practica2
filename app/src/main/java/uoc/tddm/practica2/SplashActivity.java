@@ -5,30 +5,34 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class SplashActivity extends AppCompatActivity {
 
-    public SharedPreferences registeredUser;
-    public Boolean isRegistered;
+    public SharedPreferences credenciales;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //obtenemos datos de sharedPreferences
-        registeredUser = getPreferences(Context.MODE_PRIVATE);
+        //OBTENEMOS CREDENCIALES DE SHARED PREFERENCES
+        //abrimos el fichero credenciales y guardamos su referencia
+        credenciales = getSharedPreferences("credenciales", MODE_PRIVATE);
         //recuperamos la propiedad registered
-        isRegistered = registeredUser.getBoolean("registered", false);
+        boolean isRegistered = credenciales.getBoolean("registered", false);
+        String user = credenciales.getString("username","Usuario no registrado");
 
         if (isRegistered) {
             //si usuario registrado pasamos a MainActivity
+            Toast.makeText(this,"Bienvenid@: "+user,Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
 
         } else {
             //si usuario NO registrado pasamos a LoginActivity
+            Toast.makeText(this,user,Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
             finish();
